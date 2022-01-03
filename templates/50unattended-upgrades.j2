@@ -89,6 +89,9 @@ Unattended-Upgrade::MinimalSteps "{{ unattended_upgrades_minimalsteps }}";
 // Users enabling InstallOnShutdown mode are advised to increase
 // InhibitDelayMaxSec even further, possibly to 30 minutes.
 //Unattended-Upgrade::InstallOnShutdown "false";
+{% if unattended_upgrades_install_on_shutdown %}
+Unattended-Upgrade::InstallOnShutdown "{{ unattended_upgrades_install_on_shutdown }}";
+{% endif %}
 
 // Send email to this address for problems or packages upgrades
 // If empty or unset then no email is sent, make sure that you
@@ -124,26 +127,38 @@ Unattended-Upgrade::Remove-New-Unused-Dependencies "{{ unattended_upgrades_remov
 // Do automatic removal of unused packages after the upgrade
 // (equivalent to apt-get autoremove)
 //Unattended-Upgrade::Remove-Unused-Dependencies "false";
-{% if unattended_upgrades_remove_unused_dependencies is defined %}
+{% if unattended_upgrades_remove_unused_dependencies %}
 Unattended-Upgrade::Remove-Unused-Dependencies "{{ unattended_upgrades_remove_unused_dependencies }}";
 {% endif %}
 
 // Automatically reboot *WITHOUT CONFIRMATION* if
 //  the file /var/run/reboot-required is found after the upgrade
 //Unattended-Upgrade::Automatic-Reboot "false";
+{% if unattended_upgrades_automatic_reboot %}
+Unattended-Upgrade::Automatic-Reboot "{{ unattended_upgrades_automatic_reboot }}";
+{% endif %}
 
 // Automatically reboot even if there are users currently logged in
 // when Unattended-Upgrade::Automatic-Reboot is set to true
 //Unattended-Upgrade::Automatic-Reboot-WithUsers "true";
+{% if unattended_upgrades_automatic_reboot_withusers %}
+Unattended-Upgrade::Automatic-Reboot-WithUsers "{{ unattended_upgrades_automatic_reboot_withusers }}";
+{% endif %}
 
 // If automatic reboot is enabled and needed, reboot at the specific
 // time instead of immediately
 //  Default: "now"
 //Unattended-Upgrade::Automatic-Reboot-Time "02:00";
+{% if unattended_upgrades_automatic_reboot_time %}
+Unattended-Upgrade::Automatic-Reboot-Time "{{ unattended_upgrades_automatic_reboot_time }}";
+{% endif %}
 
 // Use apt bandwidth limit feature, this example limits the download
 // speed to 70kb/sec
 //Acquire::http::Dl-Limit "70";
+{% if unattended_upgrades_dl_limit %}
+Acquire::http::Dl-Limit "{{ unattended_upgrades_dl_limit }}";
+{% endif %}
 
 // Enable logging to syslog. Default is False
 // Unattended-Upgrade::SyslogEnable "false";
