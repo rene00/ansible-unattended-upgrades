@@ -1,0 +1,29 @@
+---
+# Send email to this address for problems or packages upgrades
+# If empty or unset then no email is sent, make sure that you
+# have a working mail setup on your system. A package that provides
+# 'mailx' must be installed. E.g. "user@example.com"
+unattended_upgrades_mail: ""
+
+# Set this value to one of:
+#    "always", "only-on-error" or "on-change"
+# If this is not set, then any legacy MailOnlyOnError (boolean) value
+# is used to chose between "only-on-error" and "on-change"
+unattended_upgrades_mailreport: ""
+
+# Remove unused automatically installed kernel-related packages
+# (kernel images, kernel headers and kernel version locked tools).
+unattended_upgrades_remove_unused_kernel_packages: ""
+
+# Split the upgrade into the smallest possible chunks so that
+# they can be interrupted with SIGTERM. This makes the upgrade
+# a bit slower but it has the benefit that shutdown while a upgrade
+# is running is possible (with a small delay)
+unattended_upgrades_minimalsteps: ""
+
+# Do automatic removal of newly unused dependencies after the upgrade
+unattended_upgrades_remove_new_unused_dependencies: ""
+
+# Do automatic removal of unused packages after the upgrade
+# (equivalent to apt-get autoremove)
+unattended_upgrades_remove_unused_dependencies: ""
